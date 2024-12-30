@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.weather-info {
+  margin-top: 20px;
+  padding: 20px;
+  background: #4a5568;
+  color: #15427e;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  margin-top: 20px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #2d3748;
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0;
+  background: #3182ce;
+  color: #ffffff;
+}
+
+.input-group .form-control {
+  border-radius: 15px 0 0 15px;
+  color: #2d3748;
+  background-color: #edf2f7;
+  border: 1px solid #cbd5e0;
+}
+
+.input-group .btn {
+  border-radius: 0 15px 15px 0;
+  background-color: #3182ce;
+  color: #ffffff;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: transparent;
+  color: #2d3748;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.favorites-container {
+  max-width: 300px;
+  background-color: #f7fafc;
+  color: #2d3748;
+  border-radius: 15px;
+}
+
+.favorite-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #2d3748;
+}
+
+.favorite-item h5 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.favorite-item p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.favorite-item button {
+  align-self: flex-end;
+  background-color: #e53e3e;
+  color: #ffffff;
+  border: none;
+}
