@@ -30,7 +30,7 @@ const App = () => {
             </div>
           </div>
         </nav>
-        <main className={`flex-grow-1 container d-flex align-items-center justify-content-center px-3 ${mainClass}`}>
+        <main className={`flex-grow-1 d-flex align-items-center justify-content-center px-3 ${mainClass}`}>
           <Routes>
             <Route path="/" element={<Weather setMainClass={setMainClass} />} />
             <Route path="/about" element={<About />} />
@@ -38,7 +38,7 @@ const App = () => {
         </main>
         <footer className="bg-light text-center py-3 mt-auto">
           <div className="container">
-            <span className="text-muted">© 2024 Hava Durumu Uygulaması - Furkan KAN</span>
+            <span className="text-muted">© 2025 Hava Durumu Uygulaması - Furkan KAN</span>
           </div>
         </footer>
       </div>

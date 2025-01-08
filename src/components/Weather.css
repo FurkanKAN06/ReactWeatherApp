@@ -1,7 +1,11 @@
-main.clear-sky {
-  background: lightblue;
+main {
   position: relative;
   overflow: hidden;
+  width: 100%;
+}
+
+main.clear-sky {
+  background: lightblue;
 }
 
 main.few-clouds {
@@ -56,18 +60,14 @@ main.mist {
   animation: pulse-rays 3s infinite;
 }
 
-/* Cloud Styles */
 .cloud,
 .cloud_two {
   animation: move 5s linear infinite;
-  /* Hareket süresini 5 kat yavaşlattık */
   border-radius: 50%;
   position: absolute;
   background: #FFFFFF;
   height: 300px;
-  /* Yüksekliği 5 kat artırdık */
   width: 300px;
-  /* Genişliği 5 kat artırdık */
   box-shadow:
     #FFFFFF 325px -75px 0 -25px,
     #FFFFFF 125px -125px,
@@ -192,7 +192,7 @@ main.mist {
   margin-top: 20px;
   padding: 20px;
   background: #4a5568;
-  color: #ffffff; /* Renk düzeltildi */
+  color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -242,13 +242,12 @@ main.mist {
 }
 
 .favorites-container {
-    width: 100%; /* Full width on mobile */
-    max-width: 300px; /* Maximum width on larger screens */
-    background-color: #f7fafc; /* Light background color */
-    color: #2d3748; /* Text color */
-    border-radius: 15px; /* Rounded corners */
-    margin: 0 auto; /* Center the container */
-    padding: 15px; /* Optional: Add some padding */
+    width: 100%;
+    max-width: 300px;
+    background-color: #f7fafc;
+    color: #2d3748;
+    border-radius: 15px;
+    margin: 0 auto;
   }
 
 .favorite-item {
@@ -299,12 +298,7 @@ main.mist {
   }
 
   .favorites-container {
-    order: 3; /* Ensure favorites are at the bottom */
-    margin-top: 20px; /* Add some space above the favorites */
-    /* width: auto; */
+    order: 3;
+    margin-top: 20px;
   }
-
-  /* .card {
-    margin: 0; /* Remove margin for better spacing 
-  } */
 }
