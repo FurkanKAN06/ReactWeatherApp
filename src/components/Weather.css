@@ -1,3 +1,188 @@
+main.clear-sky {
+  background: lightblue;
+  position: relative;
+  overflow: hidden;
+}
+
+main.few-clouds {
+  background: lightblue;
+}
+
+main.overcast-clouds {
+  background: gray;
+}
+
+main.drizzle,
+main.rain,
+main.shower-rain {
+  background: darkgray;
+}
+
+main.thunderstorm {
+  background: darkblue;
+}
+
+main.snow {
+  background: rgb(135, 59, 59);
+}
+
+main.mist {
+  background: darkgray;
+  opacity: 0.7;
+}
+
+.sun {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: rotate-sun 10s linear infinite;
+  box-shadow: 0 0 20px 10px rgba(255, 165, 0, 0.5);
+}
+
+.sun-rays {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: radial-gradient(circle, transparent 50%, rgba(255, 215, 0, 0.5));
+  border-radius: 50%;
+  animation: pulse-rays 3s infinite;
+}
+
+/* Cloud Styles */
+.cloud,
+.cloud_two {
+  animation: move 5s linear infinite;
+  /* Hareket süresini 5 kat yavaşlattık */
+  border-radius: 50%;
+  position: absolute;
+  background: #FFFFFF;
+  height: 300px;
+  /* Yüksekliği 5 kat artırdık */
+  width: 300px;
+  /* Genişliği 5 kat artırdık */
+  box-shadow:
+    #FFFFFF 325px -75px 0 -25px,
+    #FFFFFF 125px -125px,
+    #FFFFFF 150px 50px,
+    #FFFFFF 300px 75px 0 -50px,
+    #FFFFFF 425px 25px 0 -25px;
+}
+
+/* Rain Drops */
+.rain-drop {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 2px;
+  height: 10px;
+  animation: rain 0.5s linear infinite;
+}
+
+/* Snow Flakes */
+.snow-flake {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  animation: snow 3s linear infinite;
+}
+
+/* Thunderstorm Effect */
+.thunderstorm {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: thunderstorm 1s infinite;
+}
+
+/* Cloud Animation */
+@keyframes move {
+  0% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes rotate-sun {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes pulse-rays {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+/* Rain Animation */
+@keyframes rain {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Drizzle Animation */
+@keyframes drizzle {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(50vh);
+  }
+}
+
+/* Snow Animation */
+@keyframes snow {
+  0% {
+    transform: translateY(-100px);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Thunderstorm Animation */
+@keyframes thunderstorm {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .container {
   display: flex;
   gap: 20px;
@@ -7,7 +192,7 @@
   margin-top: 20px;
   padding: 20px;
   background: #4a5568;
-  color: #15427e;
+  color: #ffffff; /* Renk düzeltildi */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -57,11 +242,14 @@
 }
 
 .favorites-container {
-  max-width: 300px;
-  background-color: #f7fafc;
-  color: #2d3748;
-  border-radius: 15px;
-}
+    width: 100%; /* Full width on mobile */
+    max-width: 300px; /* Maximum width on larger screens */
+    background-color: #f7fafc; /* Light background color */
+    color: #2d3748; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    margin: 0 auto; /* Center the container */
+    padding: 15px; /* Optional: Add some padding */
+  }
 
 .favorite-item {
   display: flex;
@@ -89,4 +277,34 @@
   background-color: #e53e3e;
   color: #ffffff;
   border: none;
+}
+
+.cloud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .container:not(.nabab-menu) {
+    flex-direction: column;
+  }
+
+  .cloud-container {
+    order: 1;
+  }
+
+  .favorites-container {
+    order: 3; /* Ensure favorites are at the bottom */
+    margin-top: 20px; /* Add some space above the favorites */
+    /* width: auto; */
+  }
+
+  /* .card {
+    margin: 0; /* Remove margin for better spacing 
+  } */
 }

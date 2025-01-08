@@ -1,13 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Weather.css';
 
-const Weather = () => {
+const Weather = ({ setMainClass }) => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState('');
   const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    if (weatherData) {
+      const weatherClass = getWeatherClass(weatherData.weather[0].main);
+      setMainClass(weatherClass);
+    } else {
+      setMainClass('');
+    }
+  }, [weatherData, setMainClass]);
 
   const fetchWeatherData = useCallback(async () => {
     try {
@@ -51,8 +60,107 @@ const Weather = () => {
     setFavorites(favorites.filter(fav => fav.id !== id));
   };
 
+  const getWeatherClass = (main) => {
+    switch (main) {
+      case 'Clear':
+        return 'clear-sky';
+      case 'Clouds':
+        return 'few-clouds';
+      case 'Drizzle':
+        return 'drizzle';
+      case 'Rain':
+        return 'rain';
+      case 'Thunderstorm':
+        return 'thunderstorm';
+      case 'Snow':
+        return 'snow';
+      case 'Mist':
+      case 'Smoke':
+      case 'Haze':
+      case 'Dust':
+      case 'Fog':
+      case 'Sand':
+      case 'Ash':
+      case 'Squall':
+      case 'Tornado':
+        return 'mist';
+      default:
+        return 'default-weather';
+    }
+  };
+
+  const renderClouds = () => {
+    if (!weatherData) return null;
+
+    const main = weatherData.weather[0].main;
+    let cloudCount = 0;
+    let rainCount = 0;
+    let snowCount = 0;
+
+    if (main === 'Clear') {
+      return (
+        <>
+          <div className="sun"></div>
+          <div className="sun-rays"></div>
+        </>
+      );
+    }
+
+    if (main === 'Clouds') {
+      cloudCount = 6;
+    } else if (main === 'Drizzle' || main === 'Rain') {
+      cloudCount = 4;
+      rainCount = 20;
+    } else if (main === 'Thunderstorm') {
+      cloudCount = 5;
+      rainCount = 30;
+    } else if (main === 'Snow') {
+      cloudCount = 2;
+      snowCount = 15;
+    } else if (main === 'Mist') {
+      cloudCount = 3;
+    }
+
+    const clouds = Array.from({ length: cloudCount }).map((_, index) => (
+      <div key={index} className={`cloud cloud_${index % 2 === 0 ? 'one' : 'two'}`} style={{
+        top: `${Math.random() * 100}vh`,
+        left: `${Math.random() * 100}vw`,
+        animationDuration: `${Math.random() * 4 + 4}s`
+      }} />
+    ));
+
+    const rainDrops = Array.from({ length: rainCount }).map((_, index) => (
+      <div key={index} className="rain-drop" style={{
+        top : `${Math.random() * 100}vh`,
+        left: `${Math.random() * 100}vw`,
+        animationDuration: `${Math.random() * 0.5 + 0.5}s`
+      }} />
+    ));
+
+    const snowFlakes = Array.from({ length: snowCount }).map((_, index) => (
+      <div key={index} className="snow-flake" style={{
+        top: `${Math.random() * 100}vh`,
+        left: `${Math.random() * 100}vw`,
+        animationDuration: `${Math.random() * 3 + 2}s`
+      }} />
+    ));
+
+    return (
+      <>
+        {clouds}
+        {rainDrops}
+        {snowFlakes}
+      </>
+    );
+  };
+
   return (
-    <div className="container mt-5 d-flex justify-content-between">
+    <div className="container mt-5 d-flex flex-lg-row justify-content-between">
+      <div className="cloud-container">
+        {/* Bulutlar ve diğer efektler burada render edilecek */}
+        {renderClouds()}
+      </div>
+
       <div className="card text-dark bg-light mb-3 rounded-3 shadow-lg flex-grow-1 me-3">
         <div className="card-header">
           <h1 className="card-title">Hava Durumu</h1>
@@ -71,7 +179,7 @@ const Weather = () => {
           </div>
           {error && <div className="alert alert-danger">{error}</div>}
           {weatherData && (
-            <div className="weather-info">
+            <div className={`weather-info weather-container ${getWeatherClass(weatherData.weather[0].main)}`}>
               <h2 className="card-title">{weatherData.name}, {weatherData.sys.country}</h2>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item"><strong>Sıcaklık:</strong> {weatherData.main.temp} °C</li>
@@ -87,7 +195,7 @@ const Weather = () => {
         </div>
       </div>
 
-      <div className="favorites-container card bg-light shadow-lg flex-shrink-1">
+      <div className="favorites-container card bg-light shadow-lg mt-3 mt-lg-0 flex-grow-1">
         <div className="card-header">
           <h2 className="card-title">Favoriler</h2>
         </div>

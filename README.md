@@ -20,8 +20,7 @@ Projeyi yerel ortamınızda çalıştırmak için şu adımları takip edebilirs
 
 1. Bu depoyu bilgisayarınıza klonlayın:
    ```bash
-   git clone https://github.com/<kullanıcı-adı>/hava-durumu-uygulamasi.git
-
+   git clone https://github.com/FurkanKAN06/ReactWeatherApp.git
 2. Proje dizinine gidin:
     cd hava-durumu-uygulamasi
 3. Gerekli bağımlılıkları yükleyin:
