@@ -184,7 +184,7 @@ const Weather = ({ setMainClass }) => {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item"><strong>Sıcaklık:</strong> {weatherData.main.temp} °C</li>
                 <li className="list-group-item"><strong>Hissedilen Sıcaklık:</strong> {weatherData.main.feels_like} °C</li>
-                <li className="list-group-item"><strong>Nem:</strong> {weatherData.main.humidity} %</li>
+                {/* <li className="list-group-item"><strong>Nem:</strong> {weatherData.main.humidity} %</li> */}
                 <li className="list-group-item"><strong>Rüzgar Hızı:</strong> {weatherData.wind.speed} m/s</li>
                 <li className="list-group-item"><strong>Hava Durumu:</strong> {weatherData.weather[0].description}</li>
                 <li className="list-group-item"><strong>Basınç:</strong> {weatherData.main.pressure} hPa</li>
